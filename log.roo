@@ -23,3 +23,10 @@ perform tests
 perform tests
 exit
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-04 20:39:29
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-04 21:16:26
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-04 21:16:42
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-04 21:16:50
+perform tests
+web mvc setup
+web mvc all --package ~.web
