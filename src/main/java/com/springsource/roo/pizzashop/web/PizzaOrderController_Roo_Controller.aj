@@ -62,33 +62,6 @@ privileged aspect PizzaOrderController_Roo_Controller {
         return "pizzaorders/list";
     }
     
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String PizzaOrderController.update(@Valid PizzaOrder pizzaOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, pizzaOrder);
-            return "pizzaorders/update";
-        }
-        uiModel.asMap().clear();
-        pizzaOrder.merge();
-        return "redirect:/pizzaorders/" + encodeUrlPathSegment(pizzaOrder.getId().toString(), httpServletRequest);
-    }
-    
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String PizzaOrderController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, PizzaOrder.findPizzaOrder(id));
-        return "pizzaorders/update";
-    }
-    
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String PizzaOrderController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        PizzaOrder pizzaOrder = PizzaOrder.findPizzaOrder(id);
-        pizzaOrder.remove();
-        uiModel.asMap().clear();
-        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
-        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/pizzaorders";
-    }
-    
     void PizzaOrderController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("pizzaOrder_deliverydate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
